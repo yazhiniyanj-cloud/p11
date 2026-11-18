@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pulse Hive - Connected Heart Health</title>
+<style>
+* { box-sizing: border-box; scroll-behavior: smooth; }
+body { margin: 0; font-family: Arial, sans-serif; background: #fff6df; color: #3b2a14; }
+header { background: #3b2a14; color: #ffc233; text-align: center; padding: 18px; font-size: 25px; font-weight: bold; }
+nav { background: #f5a623; padding: 12px; text-align: center; }
+nav a { color: #3b2a14; text-decoration: none; margin: 15px; font-weight: bold; }
+nav a:hover { color: #b3261e; }
+.container { max-width: 1000px; margin: 20px auto; padding: 20px; background: white; border-radius: 12px; box-shadow: 0 3px 15px #e6cf9c; }
+h2 { text-align: center; color: #b3261e; }
+.intro { text-align: center; line-height: 1.7; padding: 10px; }
+.gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-top: 20px; }
+.card { text-align: center; background: #fff9ea; border-radius: 10px; padding: 12px; transition: 0.4s; }
+.card:hover { transform: translateY(-8px); box-shadow: 0 5px 15px #e6cf9c; }
+.picture { height: 130px; display: flex; justify-content: center; align-items: center; font-size: 65px; background: #ffecb8; border-radius: 8px; }
+.card h3 { color: #b3261e; font-size: 16px; }
+.card p { font-size: 13px; }
+button { background: #d9372b; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+button:hover { background: #8f1f17; }
+form { max-width: 500px; margin: 20px auto; }
+label { display: block; color: #8a5a00; font-weight: bold; margin-top: 12px; font-size: 14px; }
+input, select { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #c9a860; border-radius: 4px; }
+.result { text-align: center; font-weight: bold; margin-top: 15px; }
+footer { background: #3b2a14; color: #ffc233; text-align: center; padding: 15px; margin-top: 20px; }
+@media(max-width:700px) { .gallery { grid-template-columns: repeat(2, 1fr); } }
+@media(max-width:450px) { .gallery { grid-template-columns: 1fr; } nav a { display: inline-block; margin: 7px; } }
+</style>
+</head>
+<body>
+
+<header>PULSE HIVE - CONNECTED HEART HEALTH</header>
+
+<nav>
+    <a href="#home">Home</a>
+    <a href="#features">Features</a>
+    <a href="#join">Join</a>
+</nav>
+
+<div class="container" id="home">
+
+    <h2>Every Heartbeat Connects the Hive</h2>
+
+    <p class="intro">
+        Pulse Hive brings heart-rate tracking and a supportive community together.
+        Members record their pulse, understand their trends and take on healthy
+        challenges with others.
+    </p>
+
+    <h2 id="features">What You Can Do</h2>
+
+    <div class="gallery">
+        <div class="card">
+            <div class="picture">❤️</div>
+            <h3>Pulse Tracking</h3>
+            <p>Record your heart rate through the day and see how it changes.</p>
+        </div>
+        <div class="card">
+            <div class="picture">😴</div>
+            <h3>Sleep &amp; Recovery</h3>
+            <p>Check your resting heart rate to see how well your body recovers.</p>
+        </div>
+        <div class="card">
+            <div class="picture">🐝</div>
+            <h3>Hive Challenges</h3>
+            <p>Join group challenges and stay active with other members.</p>
+        </div>
+        <div class="card">
+            <div class="picture">📊</div>
+            <h3>Health Insights</h3>
+            <p>Get simple weekly summaries based on your own pulse data.</p>
+        </div>
+    </div>
+
+    <h2 id="join">Join the Hive</h2>
+
+    <form id="joinForm">
+        <label>Member Name</label>
+        <input type="text" id="memberName" placeholder="Enter your name">
+
+        <label>Mobile Number</label>
+        <input type="text" id="phone" placeholder="Enter mobile number">
+
+        <label>Email Address</label>
+        <input type="text" id="email" placeholder="Enter your email">
+
+        <label>Select Your Focus</label>
+        <select id="interest">
+            <option value="">Choose a feature</option>
+            <option>Pulse Tracking</option>
+            <option>Sleep &amp; Recovery</option>
+            <option>Hive Challenges</option>
+            <option>Health Insights</option>
+        </select>
+
+        <br><br>
+
+        <center>
+            <button type="button" onclick="validateForm()">Join Pulse Hive</button>
+        </center>
+    </form>
+
+    <p id="output" class="result"></p>
+
+</div>
+
+<footer>
+    <p>© 2026 Pulse Hive | Healthier Together</p>
+</footer>
+
+<script>
+function validateForm() {
+    let name = document.getElementById("memberName").value;
+    let phone = document.getElementById("phone").value;
+    let email = document.getElementById("email").value;
+    let interest = document.getElementById("interest").value;
+    let output = document.getElementById("output");
+
+    // Check empty fields
+    if (name.trim() == "" || phone.trim() == "" || email.trim() == "" || interest == "") {
+        output.innerHTML = "Please fill all the fields!";
+        output.style.color = "red";
+    }
+    // Check numbers only
+    else if (!/^[0-9]+$/.test(phone)) {
+        output.innerHTML = "Enter numbers only!";
+        output.style.color = "red";
+    }
+    // Check mobile number length
+    else if (phone.length != 10) {
+        output.innerHTML = "Enter a 10-digit mobile number!";
+        output.style.color = "red";
+    }
+    // Check email
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        output.innerHTML = "Enter a valid email address!";
+        output.style.color = "red";
+    }
+    // Display result
+    else {
+        output.textContent = "Welcome to the Hive, " + name + "! You joined with a focus on " + interest + ".";
+        output.style.color = "green";
+    }
+}
+</script>
+
+</body>
+</html>
